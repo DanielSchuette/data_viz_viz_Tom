@@ -1,1 +1,5 @@
 streamlit==1.43.1
+matplotlib
+plotly
+scipy
+numpy

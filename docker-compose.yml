@@ -5,4 +5,4 @@ services:
     ports:
       - "7077:7077"
     volumes:
-      - "/home/daniel/code/rand/data_viz_viz_Tom/data:/app/data:ro"
+      - "./data:/app/data:ro"

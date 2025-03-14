@@ -37,6 +37,21 @@ fig.update_layout(
     boxmode='group'
 )
 
+# Add p-value annotation in the middle of the plot
+fig.add_annotation(
+    x=0.5,  # Center of x-axis (0 to 1 range)
+    y=0.9,  # Near the top of the plot
+    xref="paper",
+    yref="paper",
+    text="p-value = 0.0003",
+    showarrow=False,
+    font=dict(size=14, color="black", family="Arial, sans-serif"),
+    bgcolor="rgba(255, 255, 255, 0.7)",
+    bordercolor="black",
+    borderwidth=1,
+    borderpad=4
+)
+
 # Display the boxplot
 st.plotly_chart(fig, use_container_width=True)
 

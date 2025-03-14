@@ -1,6 +1,6 @@
 services:
   app:
-    build: ./hands_on
+    build: ./app
     restart: unless-stopped
     ports:
       - "7077:7077"

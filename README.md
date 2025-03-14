@@ -1,1 +1,8 @@
-# This is collaborative work done for a workshop
+# Barley visualization app
+A visualization and statistical analysis app using
+Python and streamlit.
+
+## Installation
+```bash
+bash docker_up.sh
+```

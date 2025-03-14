@@ -1,0 +1,8 @@
+services:
+  app:
+    build: ./hands_on
+    restart: unless-stopped
+    ports:
+      - "7077:7077"
+    # volumes:
+    #   - "./data:./app/data:ro"

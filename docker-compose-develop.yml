@@ -1,0 +1,4 @@
+services:
+  app:
+    volumes:
+    - "./hands_on:/app"

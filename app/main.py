@@ -2,18 +2,20 @@ import streamlit as st
 import pandas as pd
 from scipy import stats
 from matplotlib import pyplot
-
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
 
 st.header("Barley Visualization & Analysis")
 data: pd.DataFrame = pd.read_csv("./data/barley_data.csv")
+data = data.rename(columns={"yield": "GrainYield"})
 st.dataframe(data)
 
 variety_names = data["variety"].unique()
 years = data["year"].unique()
 sites = data["site"].unique()
 
-year1 = data["yield"][data["year"] == 1931]
-year2 = data["yield"][data["year"] == 1932]
+year1 = data["GrainYield"][data["year"] == 1931]
+year2 = data["GrainYield"][data["year"] == 1932]
 
 fig, ax = pyplot.subplots()
 ax.hist(year1, label="1931", alpha=0.5, bins=15)
@@ -25,9 +27,14 @@ aov = stats.f_oneway(year1, year2)
 t_t = stats.ttest_ind(year1, year2)
 wil = stats.wilcoxon(year1, year2)
 
+mod = ols(formula='GrainYield~C(year)*C(site)', data=data).fit()
+mod_res = sm.stats.anova_lm(mod, typ=2)
+
 st.markdown(f'## Satistical Tests\n'
             f'| Test | Statistic | P-value\n'
             f'|-|-|-|\n'
             f'| ANOVA | {aov.statistic} | {aov.pvalue} |\n'
             f'| T Test | {t_t.statistic} | {t_t.pvalue} |\n'
             f'| Wicoxon | {wil.statistic} | {wil.pvalue} | \n')
+
+st.dataframe(mod_res)

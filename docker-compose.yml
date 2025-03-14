@@ -4,5 +4,5 @@ services:
     restart: unless-stopped
     ports:
       - "7077:7077"
-    # volumes:
-    #   - "./data:./app/data:ro"
+    volumes:
+      - "/home/daniel/code/rand/data_viz_viz_Tom/data:/app/data:ro"
